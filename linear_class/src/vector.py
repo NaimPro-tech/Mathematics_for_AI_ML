@@ -45,6 +45,9 @@ class Vector:
             curr_sum = sum(self.vector[i]**2 for i in range(len(self.vector)))
             mag = curr_sum**0.5
             return mag
+    
+    def magnitude_product(self, other:"Vector")->int|float:
+        
 
 if __name__ == "__main__":
     a = Vector([2,3,4])
