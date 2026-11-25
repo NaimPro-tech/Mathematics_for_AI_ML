@@ -46,7 +46,7 @@ This repository is dedicated to building a strong mathematical foundation for Ar
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com
+   git clone https://github.com/NaimPro-tech/Mathematics_for_AI_ML.git
    ```
 2. **Navigate to the project directory:**
    ```bash
