@@ -1,8 +1,9 @@
 from exception.custom_exception import DimensionMissMatch,IrregularMatrix, MatrixMultiplicationError
 from validation.validation import validation_check_normal, validation_check_multiplication
 import copy
+from src.linear_algebra import LinearAlgebra
 
-class Matrix:
+class Matrix(LinearAlgebra):
 
     def __init__(self, matrix):
         self.matrix = copy.deepcopy(matrix)
@@ -24,6 +25,10 @@ class Matrix:
             rows.append(formatted_row)
 
         return "\n".join(rows)
+
+    @property
+    def shape(self):
+        return (len(self.matrix), len(self.matrix[0]))
 
     def __len__(self):
         return len(self.matrix)
@@ -66,8 +71,6 @@ class Matrix:
 
         return Matrix(result)
 
-    def dot(self, other):
-        validation_check_normal
 
 
 if __name__ == "__main__":
@@ -89,3 +92,5 @@ if __name__ == "__main__":
     print(A-C)
     print("Multiplication:",A*B)
     print(D)
+    print(C.shape)
+

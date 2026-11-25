@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-import copy
 
 class LinearAlgebra(ABC):
 
@@ -7,9 +6,3 @@ class LinearAlgebra(ABC):
     @abstractmethod
     def shape(self):
         pass
-
-class Vector(LinearAlgebra):
-
-    def __init__(self, vector):
-        self.vector = copy.deepcopy()
-
