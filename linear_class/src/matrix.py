@@ -26,10 +26,7 @@ class Matrix:
         return "\n".join(rows)
 
     def __len__(self):
-        count = 0
-        for _ in self.matrix:
-            count+=1
-        return count
+        return len(self.matrix)
 
     def __getitem__(self, index):
         return self.matrix[index]
@@ -68,6 +65,9 @@ class Matrix:
             result.append(curr_row)
 
         return Matrix(result)
+
+    def dot(self, other):
+        validation_check_normal
 
 
 if __name__ == "__main__":
