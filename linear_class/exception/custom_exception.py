@@ -6,3 +6,6 @@ class IrregularMatrix(Exception):
 
 class MatrixMultiplicationError(Exception):
     pass
+
+class ZeroMagnitudeError(Exception):
+    pass

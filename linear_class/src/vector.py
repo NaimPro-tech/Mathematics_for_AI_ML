@@ -1,4 +1,4 @@
-from exception.custom_exception import DimensionMissMatch
+from exception.custom_exception import DimensionMissMatch, ZeroMagnitudeError
 from validation.validation import validation_check_vector
 from src.linear_algebra import LinearAlgebra
 import copy
@@ -32,12 +32,21 @@ class Vector(LinearAlgebra):
         return Vector(result)
 
     def __mul__(self, other)->int|float:
-        validation_check_vector(self.vector, other.vector)
+        validation_check_vector(self, other)
         curr_sum = 0
         for i in range(len(self.vector)):
             temp = self.vector[i]*other.vector[i]
             curr_sum+=temp
         return float(curr_sum)
+
+    def scalar_multiplication(self, other:int|float)->"Vector":
+        if len(self.vector) == 0:
+            raise ValueError("No operation can be done with 0 dimensional vector")
+        new = []
+        for i in range(len(self.vector)):
+            new.append(self.vector[i]*other)
+        return Vector(new)
+
 
     def magnitude(self:"Vector")->int|float:
         if len(self.vector) == 0:
@@ -58,6 +67,26 @@ class Vector(LinearAlgebra):
         for i in range(len(self.vector)):
             result+= self.vector[i]*other.vector[i]
         return result
+
+    def cosine_similarity(self, other):
+        validation_check_vector(self, other)
+        dot_product = self*other
+        mag_product = self.magnitude_product(other)
+        if mag_product == 0:
+            raise ZeroMagnitudeError("Can't calculate cosine similarity.\nZero magnitude vectors have no defined direction.")
+        result = dot_product/mag_product
+        return result
+
+    def projection(self, other):
+        validation_check_vector(self, other)
+        c = self.dot(other)
+        d = other.dot(other)
+        if d == 0:
+            raise ZeroDivisionError("Can't Divide by zero.")
+        result = c/d
+        proj = other.scalar_multiplication(result)
+        return proj
+
         
 
 if __name__ == "__main__":

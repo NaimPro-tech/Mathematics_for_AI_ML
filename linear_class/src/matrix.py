@@ -73,6 +73,7 @@ class Matrix(LinearAlgebra):
 
 
 
+
 if __name__ == "__main__":
     A = Matrix([
         [1,2,8],
