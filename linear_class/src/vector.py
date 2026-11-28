@@ -82,10 +82,18 @@ class Vector(LinearAlgebra):
         c = self.dot(other)
         d = other.dot(other)
         if d == 0:
-            raise ZeroDivisionError("Can't Divide by zero.")
+            raise ZeroMagnitudeError("Can't Divide by zero.")
         result = c/d
         proj = other.scalar_multiplication(result)
         return proj
+    
+    def angle(self,other):
+        validation_check_vector(self, other)
+        from math import acos
+
+        norm = self.cosine_similarity(other)
+        theta = acos(norm)
+        return theta
 
         
 
@@ -101,4 +109,5 @@ if __name__ == "__main__":
     print(a-c)
     print(a.magnitude_product(b))
     print(d.dot(e))
+    print(a.angle(b))
 
