@@ -32,20 +32,20 @@ class Vector(LinearAlgebra):
         return Vector(result)
 
     def __mul__(self, other)->int|float:
-        validation_check_vector(self, other)
-        curr_sum = 0
-        for i in range(len(self.vector)):
-            temp = self.vector[i]*other.vector[i]
-            curr_sum+=temp
-        return float(curr_sum)
-
-    def scalar_multiplication(self, other:int|float)->"Vector":
-        if len(self.vector) == 0:
-            raise ValueError("No operation can be done with 0 dimensional vector")
-        new = []
-        for i in range(len(self.vector)):
-            new.append(self.vector[i]*other)
-        return Vector(new)
+        if isinstance(other, Vector):
+            validation_check_vector(self, other)
+            curr_sum = 0
+            for i in range(len(self.vector)):
+                temp = self.vector[i]*other.vector[i]
+                curr_sum+=temp
+            return float(curr_sum)
+        else:
+            if len(self.vector) == 0:
+                raise ValueError("No operation can be done with 0 dimensional vector")
+            new = []
+            for i in range(len(self.vector)):
+                new.append(self.vector[i]*other)
+            return Vector(new)
 
 
     def magnitude(self:"Vector")->int|float:
@@ -110,4 +110,5 @@ if __name__ == "__main__":
     print(a.magnitude_product(b))
     print(d.dot(e))
     print(a.angle(b))
+    print(a*3)
 
